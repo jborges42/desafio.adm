@@ -1,0 +1,31 @@
+FONTES DO JOGO "DESAFIO ADM" (ADM EXPERIENCE · EEB Eurico Pinz)
+As mesmas do jogo irmão "Qual é o seu perfil ADM?".
+Todas baixadas do Google Fonts (subsets latin + latin-ext, formato woff2) para uso offline.
+Todas sob a SIL Open Font License 1.1 (OFL): uso livre, inclusive comercial; é permitido
+embutir e redistribuir junto com o projeto; não é permitido vender a fonte sozinha.
+Texto da licença: https://openfontlicense.org/open-font-license-official-text/
+
+1) Archivo (variável: peso 100-900, largura 62%-125%)
+   Uso: títulos, letras A-C, botões, carimbos, cargos, números.
+   Autores: Omnibus-Type (Héctor Gatti e equipe) · Copyright 2020 The Archivo Project Authors
+   Licença: SIL OFL 1.1
+   Arquivos: archivo-latin.woff2, archivo-latin-ext.woff2
+   Fonte: https://fonts.google.com/specimen/Archivo · https://github.com/Omnibus-Type/Archivo
+
+2) Atkinson Hyperlegible Next (variável: peso 200-800)
+   Uso: texto corrido, opções de resposta, explicações das áreas.
+   Autores: Braille Institute of America; Applied Design Works (Elliott Scott, Megan Eiswerth);
+            Letters From Sweden · Copyright 2020-2024 The Atkinson Hyperlegible Next Project Authors
+   Licença: SIL OFL 1.1
+   Arquivos: atkinson-hyperlegible-next-latin.woff2, atkinson-hyperlegible-next-latin-ext.woff2
+   Fonte: https://fonts.google.com/specimen/Atkinson+Hyperlegible+Next
+          https://github.com/googlefonts/atkinson-hyperlegible-next
+
+3) Protest Revolution (peso único 400)
+   Uso: destaques curtos escritos "à mão" (pincel), nunca em texto corrido.
+   Autor: Octavio Pardo · Copyright 2020 The Protest Project Authors
+   Licença: SIL OFL 1.1
+   Arquivos: protest-revolution-latin.woff2, protest-revolution-latin-ext.woff2
+   Fonte: https://fonts.google.com/specimen/Protest+Revolution · https://github.com/octaviopardo/Protest
+
+Cobertura PT-BR (ÁÂÃÀÇÉÊÍÓÔÕÚ áâãàçéêíóôõú) conferida com fontTools nos arquivos latin.

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Desafio ADM · ADM Experience</title>
+  <meta name="description" content="Jogo de missões do ADM Experience: decida como quem administra, em situações do dia a dia. Técnico em Administração da EEB Eurico Pinz.">
+  <meta name="theme-color" content="#0b1f4d">
+  <link rel="icon" href="assets/marca/curso-simbolo.webp">
+  <link rel="stylesheet" href="assets/fontes/fontes.css">
+  <link rel="stylesheet" href="estilo.css">
+  <script src="dados.js" defer></script>
+  <script src="jogo.js" defer></script>
+</head>
+<body data-tela="inicio">
+  <!-- ícones: Phosphor Icons (MIT), interface em bold, áreas em fill -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-seta" viewBox="0 0 256 256"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></symbol>
+    <symbol id="i-imprimir" viewBox="0 0 256 256"><path d="M214.67,68H204V40a12,12,0,0,0-12-12H64A12,12,0,0,0,52,40V68H41.33C25.16,68,12,80.56,12,96v80a12,12,0,0,0,12,12H52v28a12,12,0,0,0,12,12H192a12,12,0,0,0,12-12V188h28a12,12,0,0,0,12-12V96C244,80.56,230.84,68,214.67,68ZM76,52H180V68H76ZM180,204H76V172H180Zm40-40H204v-4a12,12,0,0,0-12-12H64a12,12,0,0,0-12,12v4H36V96c0-2.17,2.44-4,5.33-4H214.67c2.89,0,5.33,1.83,5.33,4Zm-16-44a16,16,0,1,1-16-16A16,16,0,0,1,204,120Z"/></symbol>
+    <symbol id="i-som" viewBox="0 0 256 256"><path d="M157.27,21.22a12,12,0,0,0-12.64,1.31L75.88,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V32A12,12,0,0,0,157.27,21.22ZM36,100H68v56H36Zm104,99.46L92,162.13V93.87l48-37.33ZM212,128a44,44,0,0,1-11,29.11,12,12,0,1,1-18-15.88,20,20,0,0,0,0-26.43,12,12,0,0,1,18-15.86A43.94,43.94,0,0,1,212,128Zm40,0a83.87,83.87,0,0,1-21.39,56,12,12,0,0,1-17.89-16,60,60,0,0,0,0-80,12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"/></symbol>
+    <symbol id="i-mudo" viewBox="0 0 256 256"><path d="M56.88,31.93A12,12,0,1,0,39.12,48.07L64.51,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V185.44l35.12,38.63a12,12,0,0,0,17.76-16.14ZM36,100H68v56H36Zm104,99.46L92,162.13V106.24L140,159Zm-31-134a12,12,0,0,1,2.11-16.84l33.51-26.07A12,12,0,0,1,164,32V94.94a12,12,0,0,1-24,0V56.54l-14.15,11A12,12,0,0,1,109,65.44Zm74,49.35a12,12,0,0,1,18-15.85,44,44,0,0,1,5.55,50.21,12,12,0,0,1-21-11.55A19.67,19.67,0,0,0,188,128,20,20,0,0,0,183,114.79ZM252,128a84.18,84.18,0,0,1-19.11,53.35,12,12,0,1,1-18.53-15.25A60,60,0,0,0,212.73,88a12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"/></symbol>
+    <symbol id="i-reiniciar" viewBox="0 0 256 256"><path d="M228,128a100,100,0,0,1-98.66,100H128a99.39,99.39,0,0,1-68.62-27.29,12,12,0,0,1,16.48-17.45,76,76,0,1,0-1.57-109c-.13.13-.25.25-.39.37L54.89,92H72a12,12,0,0,1,0,24H24a12,12,0,0,1-12-12V56a12,12,0,0,1,24,0V76.72L57.48,57.06A100,100,0,0,1,228,128Z"/></symbol>
+    <symbol id="i-pausa" viewBox="0 0 256 256"><path d="M200,28H160a20,20,0,0,0-20,20V208a20,20,0,0,0,20,20h40a20,20,0,0,0,20-20V48A20,20,0,0,0,200,28Zm-4,176H164V52h32ZM96,28H56A20,20,0,0,0,36,48V208a20,20,0,0,0,20,20H96a20,20,0,0,0,20-20V48A20,20,0,0,0,96,28ZM92,204H60V52H92Z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 256 256"><path d="M234.49,111.07,90.41,22.94A20,20,0,0,0,60,39.87V216.13a20,20,0,0,0,30.41,16.93l144.08-88.13a19.82,19.82,0,0,0,0-33.86ZM84,208.85V47.15L216.16,128Z"/></symbol>
+    <symbol id="i-relogio" viewBox="0 0 256 256"><path d="M128,44a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,44Zm0,168a72,72,0,1,1,72-72A72.08,72.08,0,0,1,128,212ZM164.49,99.51a12,12,0,0,1,0,17l-28,28a12,12,0,0,1-17-17l28-28A12,12,0,0,1,164.49,99.51ZM92,16A12,12,0,0,1,104,4h48a12,12,0,0,1,0,24H104A12,12,0,0,1,92,16Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 256 256"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 256 256"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></symbol>
+    <symbol id="a-planejamento" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM117.66,149.66l-32,32a8,8,0,0,1-11.32,0l-16-16a8,8,0,0,1,11.32-11.32L80,164.69l26.34-26.35a8,8,0,0,1,11.32,11.32Zm0-64-32,32a8,8,0,0,1-11.32,0l-16-16A8,8,0,0,1,69.66,90.34L80,100.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM192,168H144a8,8,0,0,1,0-16h48a8,8,0,0,1,0,16Zm0-64H144a8,8,0,0,1,0-16h48a8,8,0,0,1,0,16Z"/></symbol>
+    <symbol id="a-marketing" viewBox="0 0 256 256"><path d="M200,72H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48,48,0,0,0,200,72ZM179,207.89l0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z"/></symbol>
+    <symbol id="a-pessoas" viewBox="0 0 256 256"><path d="M64.12,147.8a4,4,0,0,1-4,4.2H16a8,8,0,0,1-7.8-6.17,8.35,8.35,0,0,1,1.62-6.93A67.79,67.79,0,0,1,37,117.51a40,40,0,1,1,66.46-35.8,3.94,3.94,0,0,1-2.27,4.18A64.08,64.08,0,0,0,64,144C64,145.28,64,146.54,64.12,147.8Zm182-8.91A67.76,67.76,0,0,0,219,117.51a40,40,0,1,0-66.46-35.8,3.94,3.94,0,0,0,2.27,4.18A64.08,64.08,0,0,1,192,144c0,1.28,0,2.54-.12,3.8a4,4,0,0,0,4,4.2H240a8,8,0,0,0,7.8-6.17A8.33,8.33,0,0,0,246.17,138.89Zm-89,43.18a48,48,0,1,0-58.37,0A72.13,72.13,0,0,0,65.07,212,8,8,0,0,0,72,224H184a8,8,0,0,0,6.93-12A72.15,72.15,0,0,0,157.19,182.07Z"/></symbol>
+    <symbol id="a-recursos" viewBox="0 0 256 256"><path d="M226,88.08c-.4-1-.82-2-1.25-3a87.93,87.93,0,0,0-30.17-37H216a8,8,0,0,0,0-16H112a88.12,88.12,0,0,0-87.72,81A32,32,0,0,0,0,144a8,8,0,0,0,16,0,16,16,0,0,1,8.57-14.16A87.69,87.69,0,0,0,46,178.22l12.56,35.16A16,16,0,0,0,73.64,224H86.36a16,16,0,0,0,15.07-10.62l1.92-5.38h57.3l1.92,5.38A16,16,0,0,0,177.64,224h12.72a16,16,0,0,0,15.07-10.62L221.64,168H224a24,24,0,0,0,24-24V112A24,24,0,0,0,226,88.08ZM152,72H112a8,8,0,0,1,0-16h40a8,8,0,0,1,0,16Zm28,56a12,12,0,1,1,12-12A12,12,0,0,1,180,128Z"/></symbol>
+    <symbol id="a-atendimento" viewBox="0 0 256 256"><path d="M232,128v80a40,40,0,0,1-40,40H136a8,8,0,0,1,0-16h56a24,24,0,0,0,24-24H192a24,24,0,0,1-24-24V144a24,24,0,0,1,24-24h23.65A88,88,0,0,0,66,65.54,87.29,87.29,0,0,0,40.36,120H64a24,24,0,0,1,24,24v40a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24V128A104.11,104.11,0,0,1,201.89,54.66,103.41,103.41,0,0,1,232,128Z"/></symbol>
+    <symbol id="a-controle" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16h8V136a8,8,0,0,1,8-8H72a8,8,0,0,1,8,8v64H96V88a8,8,0,0,1,8-8h32a8,8,0,0,1,8,8V200h16V40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V200h8A8,8,0,0,1,232,208Z"/></symbol>
+    <symbol id="a-empreendedorismo" viewBox="0 0 256 256"><path d="M101.85,191.14C97.34,201,82.29,224,40,224a8,8,0,0,1-8-8c0-42.29,23-57.34,32.86-61.85a8,8,0,0,1,6.64,14.56c-6.43,2.93-20.62,12.36-23.12,38.91,26.55-2.5,36-16.69,38.91-23.12a8,8,0,1,1,14.56,6.64Zm122-144a16,16,0,0,0-15-15c-12.58-.75-44.73.4-71.4,27.07h0L88,108.7A8,8,0,0,1,76.67,97.39l26.56-26.57A4,4,0,0,0,100.41,64H74.35A15.9,15.9,0,0,0,63,68.68L28.7,103a16,16,0,0,0,9.07,27.16l38.47,5.37,44.21,44.21,5.37,38.49a15.94,15.94,0,0,0,10.78,12.92,16.11,16.11,0,0,0,5.1.83A15.91,15.91,0,0,0,153,227.3L187.32,193A16,16,0,0,0,192,181.65V155.59a4,4,0,0,0-6.83-2.82l-26.57,26.56a8,8,0,0,1-11.71-.42,8.2,8.2,0,0,1,.6-11.1l49.27-49.27h0C223.45,91.86,224.6,59.71,223.85,47.12Z"/></symbol>
+  </svg>
+
+  <!-- pinceladas de fundo da mesa -->
+  <div class="mesa-fundo" aria-hidden="true"><span class="pincel-fundo p1"></span><span class="pincel-fundo p2"></span></div>
+
+  <!-- carta de área da Administração (início, resultado) -->
+  <template id="tpl-area">
+    <article class="carta carta-area">
+      <div class="ca-topo"><b class="ca-num"></b><span class="ca-rotulo"></span></div>
+      <div class="ca-arte"><span class="ca-naipe"><svg aria-hidden="true"><use href="#a-planejamento"/></svg></span></div>
+      <p class="ca-placa"><span class="ca-nome"></span></p>
+      <p class="ca-rodape">ADM Experience · EEB Eurico Pinz</p>
+    </article>
+  </template>
+
+  <!-- crachá do jogador (nome e final) -->
+  <template id="tpl-cracha">
+    <article class="cracha">
+      <span class="cr-cordao" aria-hidden="true"></span>
+      <span class="cr-presilha" aria-hidden="true"></span>
+      <img class="cr-logo" src="assets/marca/adm-experience-adesivo.webp" alt="" width="1331" height="533">
+      <div class="cr-foto" aria-hidden="true"><span class="cr-iniciais"></span></div>
+      <p class="cr-nome"></p>
+      <p class="cr-placa"><span class="cr-cargo"></span></p>
+      <ul class="cr-selos" aria-hidden="true"></ul>
+      <p class="cr-acertos"></p>
+      <p class="cr-rodape">ADM Experience · EEB Eurico Pinz</p>
+    </article>
+  </template>
+
+  <header class="barra">
+    <img class="barra-logo" src="assets/marca/adm-experience-adesivo.webp" alt="ADM Experience" width="1331" height="533">
+    <ol class="trilha" data-t-label="trilha_label"></ol>
+    <div class="barra-direita">
+      <button class="icone-botao" id="btn-pausa" type="button" aria-pressed="false"><svg class="pausa-on"><use href="#i-pausa"/></svg><svg class="pausa-off"><use href="#i-play"/></svg></button>
+      <button class="icone-botao" id="btn-som" type="button" data-t-label="som_label" aria-pressed="true"><svg class="som-on"><use href="#i-som"/></svg><svg class="som-off"><use href="#i-mudo"/></svg></button>
+    </div>
+  </header>
+  <p class="aviso-pausa" data-t="pausado" role="status"></p>
+
+  <main class="palco">
+    <!-- 1. início -->
+    <section class="tela" id="inicio">
+      <div class="inicio-texto">
+        <img class="inicio-logo entra" src="assets/marca/adm-experience-adesivo.webp" alt="ADM Experience" width="1331" height="533">
+        <p class="kicker entra" data-t="start_kicker"></p>
+        <h1 class="inicio-titulo entra">Topa o <span class="sublinhado">desafio ADM?</span></h1>
+        <p class="inicio-sub entra" data-t="start_subtitle"></p>
+        <button class="botao botao-grande entra" id="btn-comecar" type="button"><span data-t="start_button"></span><svg><use href="#i-seta"/></svg></button>
+      </div>
+      <div class="leque" aria-hidden="true"></div>
+      <footer class="rodape">
+        <span class="rodape-rotulo" data-t="realizacao"></span>
+        <img src="assets/marca/curso.webp" alt="Técnico em Administração" width="1458" height="845">
+        <img src="assets/marca/escola.webp" alt="EEB Eurico Pinz" width="740" height="759">
+      </footer>
+    </section>
+
+    <!-- 2. nome no crachá -->
+    <section class="tela" id="nome">
+      <form class="nome-form entra" id="form-nome">
+        <h2 class="titulo-tela" data-t="nome_title"></h2>
+        <p data-t="nome_subtitle"></p>
+        <label for="campo-nome" data-t="name_label"></label>
+        <input id="campo-nome" name="nome" type="text" maxlength="20" autocomplete="off" autocapitalize="words" spellcheck="false">
+        <button class="botao" type="submit"><span data-t="begin_button"></span><svg><use href="#i-seta"/></svg></button>
+      </form>
+      <div class="nome-previa entra" aria-hidden="true"></div>
+    </section>
+
+    <!-- 3. a missão (o problema) -->
+    <section class="tela" id="missao">
+      <article class="carta missao-carta">
+        <p class="missao-rotulo"></p>
+        <span class="etiqueta"></span>
+        <h2 class="missao-titulo" tabindex="-1"></h2>
+        <p class="missao-cenario"></p>
+        <ul class="pista"></ul>
+        <button class="botao missao-seguir" type="button"><span data-t="ver_opcoes"></span><svg><use href="#i-seta"/></svg></button>
+        <span class="tempo-barra" aria-hidden="true"></span>
+      </article>
+    </section>
+
+    <!-- 4. a decisão: três cartas na mão -->
+    <section class="tela" id="decisao">
+      <div class="decisao-cabeca">
+        <span class="etiqueta"></span>
+        <p class="decisao-cenario"></p>
+        <h2 class="enunciado" tabindex="-1"></h2>
+        <ul class="pista"></ul>
+      </div>
+      <div class="relogio" role="timer" data-t-label="relogio_label">
+        <svg aria-hidden="true"><use href="#i-relogio"/></svg>
+        <b class="relogio-seg"></b>
+        <span class="relogio-pavio" aria-hidden="true"></span>
+      </div>
+      <div class="mao" role="group" data-t-label="opcoes_label"></div>
+    </section>
+
+    <!-- 5. a consequência: a carta escolhida vira -->
+    <section class="tela" id="consequencia">
+      <article class="carta conseq-carta">
+        <h2 class="carimbo" tabindex="-1"></h2>
+        <p class="conseq-rotulo" data-t="sua_decisao"></p>
+        <p class="conseq-escolha"><b class="conseq-letra" aria-hidden="true"></b><span class="conseq-escolha-texto"></span></p>
+        <p class="conseq-rotulo" data-t="aconteceu"></p>
+        <p class="conseq-texto"></p>
+      </article>
+      <p class="melhor"><span class="melhor-rotulo"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-t="melhor_rotulo"></span></span><span class="melhor-texto"></span></p>
+      <div class="acoes-etapa">
+        <button class="botao" id="btn-conseq" type="button"><span data-t="continuar"></span><svg><use href="#i-seta"/></svg></button>
+        <span class="tempo-barra" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <!-- 6. o resultado: a área da Administração -->
+    <section class="tela" id="resultado">
+      <div class="res-carta-area">
+        <img class="res-faiscas" src="assets/marca/faiscas.png" alt="" width="145" height="172">
+      </div>
+      <div class="res-info">
+        <p class="kicker res-kicker"></p>
+        <h2 class="res-titulo" tabindex="-1"></h2>
+        <p class="res-explicacao"></p>
+        <div class="res-empresa">
+          <p class="res-empresa-rotulo" data-t="na_empresa"></p>
+          <p class="res-empresa-texto"></p>
+        </div>
+        <div class="acoes-etapa">
+          <button class="botao" id="btn-resultado" type="button"><span class="btn-resultado-texto"></span><svg><use href="#i-seta"/></svg></button>
+          <span class="tempo-barra" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. final: o crachá -->
+    <section class="tela" id="final">
+      <div class="final-cracha">
+        <img class="final-coroa" src="assets/marca/coroa.png" alt="" width="222" height="154">
+      </div>
+      <div class="final-info">
+        <p class="kicker" data-t="final_kicker"></p>
+        <h1 class="final-cargo" tabindex="-1"></h1>
+        <p class="final-frase"></p>
+        <p class="final-mensagem"></p>
+        <section class="colecao">
+          <h3 class="colecao-titulo"></h3>
+          <ul class="colecao-lista"></ul>
+        </section>
+        <p class="cta" data-t="cta"></p>
+        <p class="aviso" data-t="aviso"></p>
+        <div class="acoes">
+          <button class="botao botao-claro" id="btn-imprimir" type="button"><svg><use href="#i-imprimir"/></svg><span data-t="print_button"></span></button>
+          <button class="botao" id="btn-reiniciar" type="button"><svg><use href="#i-reiniciar"/></svg><span data-t="restart_button"></span></button>
+        </div>
+      </div>
+      <footer class="res-rodape">
+        <img src="assets/marca/curso.webp" alt="Técnico em Administração" width="1458" height="845">
+        <img src="assets/marca/escola.webp" alt="EEB Eurico Pinz" width="740" height="759">
+        <span data-t="credits"></span>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
